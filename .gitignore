@@ -1,0 +1,25 @@
+# Quartus generated files
+*.qws
+*.qpf
+*.qfs
+*.qdb
+*.qdf
+*.rpt
+*.chg
+*.eqn
+*.pin
+*.sof
+*.pof
+*.jdi
+*.jic
+*.map.*
+*.fit.*
+*.asm.*
+*.sta.*
+*.bak
+
+# Simulation
+db/
+incremental_db/
+simulation/
+output_files/
