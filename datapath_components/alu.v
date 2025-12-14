@@ -1,8 +1,8 @@
-module alu (A,B,alu_ctrl, result,zero);
+module alu (A,B,alu_ctrl, result,zero,sign,carry_out);
 	input [31:0]A,B;
 	input [3:0]alu_ctrl;
 	output reg [31:0]result;
-	output zero;
+	output zero,sign,carry_out;
 	
 	localparam [3:0]AND=4'b0000,
 				 OR=4'b0001,
@@ -16,13 +16,15 @@ module alu (A,B,alu_ctrl, result,zero);
 				 SLTU=4'b1001;
 	
 	assign zero = (result == 32'b0);
+	assign sign = result[31];
+	
 	
 	always@(*)
 		case(alu_ctrl)
 			AND: result = A & B;
 			OR:  result = A | B;
 	   	ADD: result = A+B;
-			SUB: result = A-B;
+			SUB: {carry_out,result} = A-B;
 			XOR: result = A^B;
 			SLL: result = A << B[4:0];
 			SRL: result = A >> B[4:0];
@@ -33,3 +35,5 @@ module alu (A,B,alu_ctrl, result,zero);
 			endcase
 			
 endmodule
+
+

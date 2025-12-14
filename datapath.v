@@ -3,7 +3,7 @@ module datapath(clk,reset,PCsrc,WE3,imm_src,Alusrc,alu_ctrl,zero,WE,Result_src);
 	input [3:0]alu_ctrl;
 	input [2:0]imm_src;
 	input [1:0]Result_src;
-	output zero;
+	output zero,sign,carry_out;
 	wire [31:0]PCnxt,PC,Instr,PCplus4_out,PCtarget_out,imm_ext,Result,SrcA,RD2,SrcB,Alu_result,RD;
 
 	PCntr 		PCounter(clk,reset,PCnxt, PC);
@@ -14,7 +14,7 @@ module datapath(clk,reset,PCsrc,WE3,imm_src,Alusrc,alu_ctrl,zero,WE,Result_src);
 	register 	Register (clk,Instr[19:15],Instr[24:20],Instr[11:7], Result,WE3,SrcA, RD2 ); // "Result" is from mux next to data_memory
 	immediate_extnd Extend(Instr,imm_src, imm_ext);
 	mux_2x1		Alu_mux (Alusrc,RD2,imm_ext, SrcB); 
-	alu 			ALU	  (SrcA,SrcB,alu_ctrl, Alu_result,zero);//
+	alu 			ALU	  (SrcA,SrcB,alu_ctrl, Alu_result,zero,sign,carry_out);
 	data_mem		Data_memory(clk,WE,Alu_result,RD2,Instr[14:12], RD);//<---- data_mem(clk,WE,A,WD,funct3, RD);
 	mux_3x1		Result_mux(Result_src,Alu_result,RD,PCplus4_out,Result);
 	
