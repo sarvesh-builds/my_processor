@@ -15,7 +15,7 @@ module datapath(clk,reset,PCsrc,WE3,imm_src,Alusrc,alu_ctrl,zero,WE,Result_src);
 	immediate_extnd Extend(Instr,imm_src, imm_ext);
 	mux_2x1		Alu_mux (Alusrc,RD2,imm_ext, SrcB); 
 	alu 			ALU	  (SrcA,SrcB,alu_ctrl, Alu_result,zero);//
-	data_mem		Data_memory(clk,WE,Alu_result,RD2, RD);
+	data_mem		Data_memory(clk,WE,Alu_result,RD2,Instr[14:12], RD);//<---- data_mem(clk,WE,A,WD,funct3, RD);
 	mux_3x1		Result_mux(Result_src,Alu_result,RD,PCplus4_out,Result);
 	
 	

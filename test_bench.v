@@ -121,23 +121,31 @@ module test_bench;
         // - Drive Alu_result = 12 (byte address -> word index 3)
         // - Check datapath RD net equals that word
         // -------------------------------------------------
-        $display("\nTEST 3: Data memory read (word index 3)");
+       $display("\nTEST 3: Data memory read (word index 3)");
 
-        // init mem[3]
-        uut.Data_memory.mem[3] = 32'hDEAD_BEEF;
+uut.Data_memory.mem[3] = 32'hDEAD_BEEF;
 
-        // Force the ALU result (address) to 12 (points to mem[3])
-        force uut.Alu_result = 32'd12;
-        #2; // wait for combinational read to reflect
+// force lw instruction (funct3 = 010)
+force uut.Instr = 32'h00002000;
 
-        assert_eq32(uut.RD, 32'hDEAD_BEEF, "Data memory read at byte addr 12");
+// select memory in Result mux
+Result_src = 2'b01;
 
-        release uut.Alu_result;
+// force address
+force uut.Alu_result = 32'd12;
+#2;
+
+assert_eq32(uut.Result, 32'hDEAD_BEEF, "Data memory read at byte addr 12");
+
+release uut.Alu_result;
+release uut.Instr;
+
 
         // -------------------------------------------------
         $display("\n=== Datapath self-check finished ===\n");
         #10;
         $finish;
+		  
     end
 
 endmodule
