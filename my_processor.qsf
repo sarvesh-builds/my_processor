@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC7C7F23C8
-set_global_assignment -name TOP_LEVEL_ENTITY datapath
+set_global_assignment -name TOP_LEVEL_ENTITY my_processor
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:40:30  DECEMBER 11, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
@@ -72,10 +72,13 @@ set_global_assignment -name EDA_TEST_BENCH_NAME test_bench -section_id eda_simul
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id test_bench
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME test_bench -section_id test_bench
 set_global_assignment -name EDA_TEST_BENCH_FILE test_bench.v -section_id test_bench
+set_global_assignment -name VERILOG_FILE control_unit.v
+set_global_assignment -name VERILOG_FILE main_decoder.v
+set_global_assignment -name VERILOG_FILE datapath_components/pcmux_3x1.v
+set_global_assignment -name VERILOG_FILE datapath_components/Rmux_5x1.v
+set_global_assignment -name VERILOG_FILE alu_decoder.v
+set_global_assignment -name VERILOG_FILE my_processor.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VERILOG_FILE datapath_components/mux_3x1.v
-set_global_assignment -name VERILOG_FILE control_unit.v
-set_global_assignment -name VERILOG_FILE main_decoder.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -21,7 +21,7 @@ module immediate_extnd(instr,imm_src, imm_ext);
 			J: begin
 				imm_ext = {{11{instr[31]}},instr[31],instr[19:12],instr[20],instr[30:21],1'b0};
 				end
-			default : imm_ext= 32'b0;
+			default: imm_ext = 32'b0;
 			endcase
 			
 endmodule

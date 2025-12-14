@@ -2,7 +2,8 @@ module alu (A,B,alu_ctrl, result,zero,sign,carry_out);
 	input [31:0]A,B;
 	input [3:0]alu_ctrl;
 	output reg [31:0]result;
-	output zero,sign,carry_out;
+	output zero,sign;
+	output reg carry_out;
 	
 	localparam [3:0]AND=4'b0000,
 				 OR=4'b0001,
