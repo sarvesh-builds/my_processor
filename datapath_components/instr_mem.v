@@ -4,9 +4,11 @@ module instr_mem(A,RD);
 	
 	reg [31:0] mem [0:63];
 	
+	initial $readmemh("imem.hex", mem);
+	
 	always @(*)
 		RD <= mem[A[31:2]];
 	
 endmodule
 
-	
+

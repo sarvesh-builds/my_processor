@@ -6,7 +6,7 @@ module data_mem(clk,WE,A,WD,funct3, RD);
 	
 	output reg [31:0]RD;
 	
-	reg [31:0]mem[0:63];	
+	reg [31:0]mem[0:255];	
 	
 //Read Memory should be byte or halfword or word addressable; this can decided based on the funct3
 //assign RD = mem[A[31:2]]; This is word addressable , cannot access half word or byte

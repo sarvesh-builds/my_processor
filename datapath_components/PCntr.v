@@ -1,13 +1,12 @@
                         
-module PCntr(clk,reset,PCnxt, PC);
-	input clk,reset;
+module PCntr(clk,PCnxt, PC);
+	input clk;
 	input [31:0]PCnxt;
 	output reg[31:0] PC;
 	
+	initial PC = 32'b0;
+
 	always@(posedge clk)
-		if (reset)
-			PC = 32'd0;
-		else
 			PC <= PCnxt;
 		
 endmodule
