@@ -27,8 +27,13 @@ This project demonstrates practical understanding of **computer architecture, RI
 
 ## 🏗️ Architecture
 
-The CPU follows a conventional single-cycle RISC-V datapath:
+Controller :
+![CPU RTL Design](images/controller.png)
 
+Datapath :
+![CPU RTL Design](images/datapath.png)
+
+The CPU follows a conventional single-cycle RISC-V datapath
 ```text
                          ┌──────────────────┐
                          │ Program Counter  │
